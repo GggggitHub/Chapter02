@@ -52,5 +52,14 @@ final Method method = clazz.getSuperclass().getDeclaredMethod("stop");
 method.setAccessible(true);
 method.invoke(watchdog);
 ```
-
 这是为什么，你能告诉我们吗？
+可能？问题原因	Android 6.0 之前 Daemons 实现不同，反射结构不一致，可能抛出异常或破坏线程状态。
+
+
+华为 P9 TimeOut crash 30s
+2025-04-17 06:54:54.782 8073-8083/com.dodola.watchdogkiller D/ghost: =============fire finalize=============FinalizerDaemon
+2025-04-17 06:54:56.709 8073-8111/com.dodola.watchdogkiller W/libEGL: EGLNativeWindowType 0x76a99df010 disconnect failed
+2025-04-17 06:55:15.283 8073-8080/com.dodola.watchdogkiller I/zygote64: Thread[3,tid=8080,WaitingInMainSignalCatcherLoop,Thread*=0x76c665ca00,peer=0x159800b0,"Signal Catcher"]: reacting to signal 3
+2025-04-17 06:55:15.284 8073-8080/com.dodola.watchdogkiller I/zygote64:
+2025-04-17 06:55:15.444 8073-8080/com.dodola.watchdogkiller I/zygote64: Wrote stack traces to '/data/anr/traces.txt'
+2025-04-17 06:55:20.436 8073-8084/com.dodola.watchdogkiller I/Process: Sending signal. PID: 8073 SIG: 9

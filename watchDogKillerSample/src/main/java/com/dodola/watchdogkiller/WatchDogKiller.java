@@ -59,6 +59,7 @@ public class WatchDogKiller {
                 final Field thread = clazz.getSuperclass().getDeclaredField("thread");
                 thread.setAccessible(true);
                 thread.set(watchdog, null);
+                //new Thread().stop();
             } catch (final Throwable t) {
                 Log.e(TAG, "stopWatchDog, set null occur error:" + t);
 
